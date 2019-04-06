@@ -22,7 +22,7 @@ router.get("/creat_url", async (req, res) => {
   try {
     const newList = new urlMODEL({
       ogUrl: req.query.url,
-      shUrl: "http://localhost:5500/" + newUrl,
+      shUrl: "https://shorturl-server.herokuapp.com/" + newUrl,
       visit: 0
     });
     await newList.save();
@@ -54,7 +54,7 @@ router.get("/found_url", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  let url = "http://localhost:5500/" + req.params.id;
+  let url = "https://shorturl-server.herokuapp.com/" + req.params.id;
   try {
     const find_one = await urlMODEL.findOne({ shUrl: url });
     find_one.visit = find_one.visit + 1;
